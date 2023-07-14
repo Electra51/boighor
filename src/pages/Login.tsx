@@ -11,7 +11,7 @@ import {
  
 export default function Login() {
   return (
-    <Card className="w-96">
+    <Card className="w-96" style={{marginTop:'40px'}}>
       <CardHeader
         variant="gradient"
         color="blue"

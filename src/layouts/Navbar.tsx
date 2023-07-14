@@ -80,7 +80,9 @@ export default function Example() {
               size="sm"
               className="hidden lg:inline-block"
             >
-              <span>Sign up</span>
+              <Link to='/logout'><span>Sign up</span>
+              </Link>
+              
             </Button>
             <Button
               variant="gradient"

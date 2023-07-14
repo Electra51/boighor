@@ -25,18 +25,20 @@ const routes = createBrowserRouter([
     path: "/bookdetail",
     element: <BookDetail/>,
   },
-     
-    ],
-  },
   {
     path: "/login",
     element: <Login/>,
   },
-  
-   {
+  {
     path: "/logout",
     element: <Register/>,
   },
+     
+    ],
+  },
+ 
+  
+   
    {
     path: "*",
     element: <NotFound/>,

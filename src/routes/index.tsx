@@ -6,6 +6,7 @@ import AddNewBook from "../pages/AddNewBook";
 import BookDetail from "../pages/BookDetail";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import NotFound from "../pages/NotFound";
 
 
 const routes = createBrowserRouter([
@@ -36,6 +37,10 @@ const routes = createBrowserRouter([
    {
     path: "/logout",
     element: <Register/>,
+  },
+   {
+    path: "*",
+    element: <NotFound/>,
   },
 ]);
 

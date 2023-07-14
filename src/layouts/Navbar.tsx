@@ -8,7 +8,7 @@ import {
   
 } from "@material-tailwind/react";
 import  navLogo from '../assets/images/navlogo.png.png'
- 
+ import { Link } from 'react-router-dom';
 export default function Example() {
   const [openNav, setOpenNav] = React.useState(false);
  
@@ -87,7 +87,13 @@ export default function Example() {
               size="sm"
               className="hidden lg:inline-block"
             >
-              <span>Sign in</span>
+               <Link
+          to="/login"
+        
+        > <span>Sign in</span>
+          
+        </Link>
+             
             </Button>
             <IconButton
               variant="text"

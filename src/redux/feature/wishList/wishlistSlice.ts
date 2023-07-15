@@ -14,7 +14,15 @@ const wishlistSlice = createSlice({
   initialState,
   reducers: {
     addToWishList: (state, action: PayloadAction<IBook>) => {
-      state.wish.push(action.payload);
+      const existing = state.wish.find(
+        (singleWish) => singleWish._id === action.payload._id
+      );
+
+      if (existing) {
+        console.log('test');
+      } else {
+        state.wish.push(action.payload);
+      }
     },
   },
 });

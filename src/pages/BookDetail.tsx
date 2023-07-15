@@ -9,10 +9,12 @@ import {
   HeartIcon,
   
 } from "@heroicons/react/24/solid";
+import { Button } from "@material-tailwind/react";
 import {
   
   IconButton,
 } from "@material-tailwind/react";
+import BookReview from "../components/ui/BookReview";
 export default function BookDetail() {
   const {id}=useParams();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
@@ -39,6 +41,9 @@ export default function BookDetail() {
          <Typography color="gray" className="font-normal mb-8">
          publication Date: {data?.publication_date}
         </Typography>
+         <Typography color="gray" className="font-normal mb-8">
+         Genre: {data?.genre}
+        </Typography>
          <IconButton
           size="sm"
           color="gray"
@@ -47,7 +52,12 @@ export default function BookDetail() {
         >
           <HeartIcon className="h-6 w-6" />
         </IconButton>
+
+        <Button className="mr-3"
+        >Edit</Button>
+        <Button>Delete</Button>
         </div>
+        <BookReview  id={id!}/>
 </div>
      
     

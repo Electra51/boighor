@@ -24,8 +24,14 @@ const wishlistSlice = createSlice({
         state.wish.push(action.payload);
       }
     },
+
+    removeFromWishList: (state, action: PayloadAction<IBook>) => {
+      state.wish = state.wish.filter(
+        (singleWish) => singleWish._id !== action.payload._id
+      );
+    },
   },
 });
 
-export const { addToWishList } = wishlistSlice.actions;
+export const { addToWishList, removeFromWishList } = wishlistSlice.actions;
 export default wishlistSlice.reducer;

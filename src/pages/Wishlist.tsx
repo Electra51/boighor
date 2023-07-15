@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import {
   Card,
@@ -9,19 +11,33 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import {
-  HeartIcon,
+  HeartIcon, TrashIcon
 } from "@heroicons/react/24/solid";
  import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
-import { useAppSelector } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { IBook } from "../types/globalTypes";
-
+import { Fragment, useState } from "react";
+import {
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+} from "@material-tailwind/react";
+import { removeFromWishList } from "../redux/feature/wishList/wishlistSlice";
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-empty-pattern
 export default function Wishlist({}) {
-
+   const dispatch = useAppDispatch();
+ const [open, setOpen] = useState(false);
+ 
+  const handleOpen = () => setOpen(!open);
 const {wish}=useAppSelector((state)=>state.wishlist)
 console.log('wish',wish)
+
+ const handleRemoveBook =(value:IBook)=>{
+    dispatch(removeFromWishList(value))
+  }
 
   return (
      <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -58,10 +74,44 @@ console.log('wish',wish)
           className="rounded-full"
           
         >
-          <HeartIcon className="h-6 w-6" />
-        </IconButton>
+          <HeartIcon className="h-6 w-6"/>
+       </IconButton>
         </div>
          <div className="mb-3 flex items-center justify-between">
+         
+         
+
+        <Fragment>
+      <IconButton
+          onClick={(handleOpen)} variant="text"
+          size="sm"
+          color="gray"
+        
+          className="rounded-full"
+          
+        ><TrashIcon className="h-6 w-6"/>
+        </IconButton>
+      <Dialog open={open} handler={handleOpen}>
+        <DialogHeader>Title:{value?.title}</DialogHeader>
+        <DialogBody divider>
+          Are you sure remove it from wishList?
+        </DialogBody>
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
+          
+          <Button variant="gradient" color="green"   onClick={()=>handleRemoveBook(value)}>
+            <span>Confirm</span>
+          </Button>
+        </DialogFooter>
+      </Dialog>
+    </Fragment>
           <Typography color="gray">
           Author: {value?.author}
         </Typography>

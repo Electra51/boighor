@@ -22,9 +22,10 @@ const routes = createBrowserRouter([
     element: <AllBook/>,
   },
       {
-    path: "/bookdetail",
+    path: "/bookdetail/:id",
     element: <BookDetail/>,
   },
+   
   {
     path: "/login",
     element: <Login/>,

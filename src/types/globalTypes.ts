@@ -1,5 +1,5 @@
 export interface IBook {
-  id: number;
+  _id: number;
   title: string;
   image: string;
   publication_date: string;

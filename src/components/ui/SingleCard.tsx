@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import {
   Card,
   CardHeader,
@@ -14,6 +15,7 @@ import {
 } from "@heroicons/react/24/solid";
  import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import { IBook } from "../../types/globalTypes";
+import { Link } from "react-router-dom";
 
 
  interface IProps {
@@ -23,6 +25,7 @@ import { IBook } from "../../types/globalTypes";
 export default function SingleCard({card}: IProps) {
 
   return (
+    <Link to={`/bookdetail/${card._id}`} >
     <Card className="w-full max-w-[26rem] shadow-lg">
       <CardHeader floated={false} color="blue-gray">
         <img
@@ -41,6 +44,7 @@ export default function SingleCard({card}: IProps) {
       </CardHeader>
       <CardBody>
         <div className="mb-3 flex items-center justify-between">
+          
           <Typography variant="h5" color="blue-gray" className="font-medium">
             {card?.title}
           </Typography>
@@ -77,6 +81,6 @@ export default function SingleCard({card}: IProps) {
           </Button>
         </a>
       </CardFooter>
-    </Card>
+    </Card></Link>
   );
 }

@@ -27,9 +27,10 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <Link  to='/allbook'>
+        <p className="flex items-center">
         All Books
-        </a>
+        </p></Link>
       </Typography>
       <Typography
         as="li"

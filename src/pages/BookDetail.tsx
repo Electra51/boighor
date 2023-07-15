@@ -4,7 +4,15 @@ import {
 } from "@material-tailwind/react";
 import { useGetBookDetailQuery } from "../redux/api/apiSlice";
 import { useParams } from "react-router-dom";
- 
+import {
+  
+  HeartIcon,
+  
+} from "@heroicons/react/24/solid";
+import {
+  
+  IconButton,
+} from "@material-tailwind/react";
 export default function BookDetail() {
   const {id}=useParams();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
@@ -12,10 +20,11 @@ export default function BookDetail() {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   console.log('kk',data)
   return (
-    <div>
+  
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
   
-  <div ><img 
+  <div >
+    <img 
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           src={data?.image}
           className="w-full h-full object-cover"
@@ -29,9 +38,18 @@ export default function BookDetail() {
         </Typography>
          <Typography color="gray" className="font-normal mb-8">
          publication Date: {data?.publication_date}
-        </Typography></div>
+        </Typography>
+         <IconButton
+          size="sm"
+          color="gray"
+          variant="text"
+          className="rounded-full"
+        >
+          <HeartIcon className="h-6 w-6" />
+        </IconButton>
+        </div>
 </div>
      
-    </div>
+    
   )
 }

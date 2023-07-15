@@ -9,13 +9,14 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import {
-  
   HeartIcon,
-  
 } from "@heroicons/react/24/solid";
  import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import { IBook } from "../../types/globalTypes";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useAppDispatch } from "../../redux/hook";
+import { addToWishList } from "../../redux/feature/wishList/wishlistSlice";
 
 
  interface IProps {
@@ -23,38 +24,46 @@ import { Link } from "react-router-dom";
 }
 
 export default function SingleCard({card}: IProps) {
+const dispatch =useAppDispatch();
+  const [showIcon, setShowIcon]= useState();
 
+  const handleAddBook =(card:IBook)=>{
+    dispatch(addToWishList(card))
+  }
   return (
-    <Link to={`/bookdetail/${card._id}`} >
+    
     <Card className="w-full max-w-[26rem] shadow-lg">
+      <Link to={`/bookdetail/${card?._id}`} >
       <CardHeader floated={false} color="blue-gray">
         <img
-          src={card.image}
+          src={card?.image}
           alt="ui/ux review check"
         />
         <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-        <IconButton
-          size="sm"
-          color="red"
-          variant="text"
-          className="!absolute top-4 right-4 rounded-full"
-        >
-          <HeartIcon className="h-6 w-6" />
-        </IconButton>
       </CardHeader>
+      </Link>
       <CardBody>
         <div className="mb-3 flex items-center justify-between">
           
           <Typography variant="h5" color="blue-gray" className="font-medium">
             {card?.title}
           </Typography>
-          <Typography
+          {/* <Typography
             color="blue-gray"
             className="flex items-center gap-1.5 font-normal"
           >
               <Typography className="font-normal">{card?.publication_date}</Typography>
-          </Typography>
-        
+          </Typography> */}
+          
+        <IconButton
+          size="sm"
+          color="gray"
+          variant="text"
+          className="rounded-full"
+          onClick={()=>handleAddBook(card)}
+        >
+          <HeartIcon className="h-6 w-6" />
+        </IconButton>
         </div>
          <div className="mb-3 flex items-center justify-between">
           <Typography color="gray">
@@ -66,7 +75,7 @@ export default function SingleCard({card}: IProps) {
             className="flex items-center gap-1.5 font-normal"
           >
            
-           Genre: {card.genre}
+           Genre: {card?.genre}
           </Typography>
         
         </div>
@@ -81,6 +90,6 @@ export default function SingleCard({card}: IProps) {
           </Button>
         </a>
       </CardFooter>
-    </Card></Link>
+    </Card>
   );
 }

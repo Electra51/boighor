@@ -3,10 +3,10 @@ import Home from "../pages/Home";
 import App from "../App";
 import AllBook from "../pages/AllBook";
 import BookDetail from "../pages/BookDetail";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 import Wishlist from "../pages/Wishlist";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
 
 
 const routes = createBrowserRouter([
@@ -36,8 +36,8 @@ const routes = createBrowserRouter([
     element: <Login/>,
   },
   {
-    path: "/logout",
-    element: <Register/>,
+    path: "/signup",
+    element: <Signup/>,
   },
      
     ],

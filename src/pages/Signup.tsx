@@ -1,18 +1,17 @@
 
 import { Link } from 'react-router-dom';
-import { LoginForm } from '../components/ui/LoginForm';
+import { RegisterForm } from '../components/ui/RegisterForm';
 // import logo from '../assets/images/technet-logo-white.png';
 
-
-export default function Login() {
+export default function Signup() {
   return (
     <>
       <div className="container relative hidden h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
-          to="/signup"
-         
+          to="/login"
+          
         >
-          Signup
+          Login
         </Link>
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div
@@ -35,13 +34,13 @@ export default function Login() {
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl font-semibold tracking-tight">
-                Login to your account
+                Create an account
               </h1>
               <p className="text-sm text-muted-foreground">
-                Enter your email below
+                Enter your email below to create your account
               </p>
             </div>
-            <LoginForm />
+            <RegisterForm />
             <p className="px-8 text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{' '}
               <Link

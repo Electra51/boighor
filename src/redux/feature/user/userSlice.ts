@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -42,7 +42,14 @@ export const loginUser = createAsyncThunk(
 const userSlice = createSlice({
   name: 'book',
   initialState,
-  reducers: {},
+  reducers: {
+    setUser: (state, action: PayloadAction<string | null>) => {
+      state.user.email = action.payload;
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createUser.pending, (state) => {
@@ -77,5 +84,5 @@ const userSlice = createSlice({
       });
   },
 });
-
+export const { setUser, setLoading } = userSlice.actions;
 export default userSlice.reducer;

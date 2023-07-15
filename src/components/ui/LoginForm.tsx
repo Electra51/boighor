@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // import {
 //   Card,
 //   CardHeader,
@@ -94,12 +97,14 @@ export function LoginForm() {
     if (user.email && !isLoading) {
       navigate('/');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.email, isLoading]);
 
   return (
     <div className=''>
-      <form>
-         {/* onSubmit={handleSubmit(onSubmit)} */}
+     
+      <form onSubmit={handleSubmit(onSubmit)}>
+         
         <div className="grid gap-2">
           <div className="grid gap-1">
             
@@ -110,18 +115,19 @@ export function LoginForm() {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              // {...register('email', { required: 'Email is required' })}
+              {...register('email', { required: 'Email is required' })}
             />
-            {/* {errors.email && <p>{errors.email.message}</p>} */}
+            
+            {errors.email && <p>{errors.email.message}</p>}
             <Input
               id="password"
               placeholder="your password"
               type="password"
               autoCapitalize="none"
               autoComplete="password"
-              // {...register('password', { required: 'Password is required' })}
+              {...register('password', { required: 'Password is required' })}
             />
-            {/* {errors.password && <p>{errors.password.message}</p>} */}
+            {errors.password && <p>{errors.password.message}</p>}
           </div>
           <Button>Login with email</Button>
         </div>

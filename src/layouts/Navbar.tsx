@@ -9,9 +9,21 @@ import {
 } from "@material-tailwind/react";
 import  navLogo from '../assets/images/navlogo.png.png'
  import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { signOut } from "firebase/auth";
+import { auth } from "../lib/firebase";
+import { setUser } from "../redux/feature/user/userSlice";
 export default function Example() {
+  const {user} =useAppSelector((state)=>state.user);
   const [openNav, setOpenNav] = React.useState(false);
- 
+ const dispatch = useAppDispatch();
+  const handleLogOut=()=>{
+    console.log('logout')
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    signOut(auth).then(()=>{
+      dispatch(setUser(null))
+    })
+  }
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -78,6 +90,7 @@ export default function Example() {
           />
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
+            {!user?.email && <>
             <Button
               variant="gradient"
               size="sm"
@@ -99,7 +112,22 @@ export default function Example() {
           
         </Link>
              
+            </Button></>}
+            {
+user?.email && <Button onClick={handleLogOut}
+              variant="gradient"
+              size="sm"
+              className="hidden lg:inline-block"
+            >
+               <Link
+          to="/login"
+        
+        > <span>LogOut</span>
+          
+        </Link>
+             
             </Button>
+            }
             <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

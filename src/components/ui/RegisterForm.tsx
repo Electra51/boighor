@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // import {
 //   Card,
 //   Input,
@@ -106,8 +109,8 @@ export function RegisterForm() {
 
   return (
     <div className=''>
-      {/* onSubmit={handleSubmit(onSubmit)} */}
-      <form >
+    
+      <form   onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2">
           <div className="grid gap-1">
             
@@ -118,18 +121,18 @@ export function RegisterForm() {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              // {...register('email', { required: 'Email is required' })}
+              {...register('email', { required: 'Email is required' })}
             />
-            {/* {errors.email && <p>{errors.email.message}</p>} */}
+            {errors.email && <p>{errors.email.message}</p>}
             <Input
               id="password"
               placeholder="your password"
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
-              // {...register('password', { required: 'Password is required' })}
+              {...register('password', { required: 'Password is required' })}
             />
-            {/* {errors.password && <p>{errors.password.message}</p>} */}
+            {errors.password && <p>{errors.password.message}</p>}
             <Input
               id="password"
               placeholder="confirm password"

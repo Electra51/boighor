@@ -62,9 +62,11 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
-          Add New Book
-        </a>
+         <Link  to='/addnewbook'>
+        <p className="flex items-center">
+         Add New Book
+        </p></Link>
+       
       </Typography>
       <Typography
         as="li"
@@ -72,9 +74,10 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
-         Edit Book
-        </a>
+         <Link  to='/editbook'>
+        <p className="flex items-center">
+        Edit Book
+        </p></Link>
       </Typography>
     </ul>
   );

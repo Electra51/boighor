@@ -15,6 +15,16 @@ export const api = createApi({
       query: (id) => `/book/${id}`,
       providesTags: ['comments'],
     }),
+    postAddBook: builder.mutation({
+      query: (data) => ({
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        url: '/books',
+        method: 'POST',
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        body: data,
+      }),
+    }),
+
     postComment: builder.mutation({
       query: ({ id, data }) => ({
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
@@ -49,4 +59,5 @@ export const {
   usePostCommentMutation,
   useGetBookReviewQuery,
   useRegisterMutation,
+  usePostAddBookMutation,
 } = api;

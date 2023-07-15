@@ -1,60 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-// import {
-//   Card,
-//   CardHeader,
-//   CardBody,
-//   CardFooter,
-//   Typography,
-//   Input,
-//   Checkbox,
-//   Button,
-// } from "@material-tailwind/react";
- 
-// export default function Login() {
-//   return (
-//     <Card className="w-96" style={{marginTop:'40px'}}>
-//       <CardHeader
-//         variant="gradient"
-//         color="blue"
-//         className="mb-4 grid h-28 place-items-center"
-//       >
-//         <Typography variant="h3" color="white">
-//           Sign In
-//         </Typography>
-//       </CardHeader>
-//       <CardBody className="flex flex-col gap-4">
-//         <Input label="Email" size="lg" />
-//         <Input label="Password" size="lg" />
-//         <div className="-ml-2.5">
-//           <Checkbox label="Remember Me" />
-//         </div>
-//       </CardBody>
-//       <CardFooter className="pt-0">
-//         <Button variant="gradient" fullWidth>
-//           Sign In
-//         </Button>
-//         <Typography variant="small" className="mt-6 flex justify-center">
-//           Don't have an account?
-//           <Typography
-//             as="a"
-//             href="#signup"
-//             variant="small"
-//             color="blue"
-//             className="ml-1 font-bold"
-//           >
-//             Sign up
-//           </Typography>
-//         </Typography>
-//       </CardFooter>
-//     </Card>
-//   );
-// }
+
 
 
 import { useForm } from 'react-hook-form';
-import { FcGoogle } from 'react-icons/fc';
 
 
 import { useNavigate } from 'react-router-dom';
@@ -155,13 +105,17 @@ export function LoginForm() {
           </span>
         </div>
       </div>
+      
+
       <Button
-        type="button"
-        className="flex items-center justify-between"
-        onClick={handleGoogleLogin}
+        size="lg"
+        variant="outlined"
+        color="blue-gray"
+        className="flex items-center gap-3"
+         onClick={handleGoogleLogin}
       >
-        <p>Login With Google</p>
-        <FcGoogle />
+        <img src="/icons/google.svg" alt="metamask" className="h-6 w-6" />
+        Continue with Google
       </Button>
     </div>
   );

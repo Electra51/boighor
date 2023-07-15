@@ -6,12 +6,7 @@ import { Avatar, Button, Textarea } from "@material-tailwind/react";
 import { FiSend } from 'react-icons/fi';
 import { useGetBookDetailQuery, usePostCommentMutation } from '../../redux/api/apiSlice';
 
-const dummyComments = [
-  'Bhalo na',
-  'Ki shob ghori egula??',
-  'Eta kono product holo ??',
-  '200 taka dibo, hobe ??',
-];
+
 
 interface IProps {
   id: string;

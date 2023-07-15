@@ -50,7 +50,7 @@ export default function Login() {
               >
                 Terms of Service
               </Link>{' '}
-              and{' '}
+              and
               <Link
                 to="/privacy"
                 className="underline underline-offset-4 hover:text-primary"

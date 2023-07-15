@@ -62,8 +62,9 @@ import { useEffect } from 'react';
 
 
 import { Button, Input } from '@material-tailwind/react';
-import { loginUser } from '../../redux/feature/user/userSlice';
+import { googleLogin, loginUser } from '../../redux/feature/user/userSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -81,7 +82,7 @@ export function LoginForm() {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   } = useForm<LoginFormInputs>();
 
-  const { user, isLoading } = useAppSelector((state) => state.user);
+  const { user, isLoading,isError,error } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -99,6 +100,18 @@ export function LoginForm() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.email, isLoading]);
+
+   useEffect(() => {
+    if (isError) {
+      toast.error(error);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isError,error]);
+
+  const handleGoogleLogin=()=>{
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    dispatch(googleLogin())
+  }
 
   return (
     <div className=''>
@@ -129,7 +142,7 @@ export function LoginForm() {
             />
             {errors.password && <p>{errors.password.message}</p>}
           </div>
-          <Button>Login with email</Button>
+          <Button type='submit'>Login with email</Button>
         </div>
       </form>
       <div className="relative">
@@ -145,8 +158,9 @@ export function LoginForm() {
       <Button
         type="button"
         className="flex items-center justify-between"
+        onClick={handleGoogleLogin}
       >
-        <p>Google</p>
+        <p>Login With Google</p>
         <FcGoogle />
       </Button>
     </div>

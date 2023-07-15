@@ -30,6 +30,16 @@ export const api = createApi({
       query: (id) => `/comment/${id}`,
       providesTags: ['comments'],
     }),
+
+    register: builder.mutation({
+      query: (data) => ({
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        url: `/user`,
+        method: 'POST',
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -38,4 +48,5 @@ export const {
   useGetBookDetailQuery,
   usePostCommentMutation,
   useGetBookReviewQuery,
+  useRegisterMutation,
 } = api;

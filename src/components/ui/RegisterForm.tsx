@@ -13,6 +13,7 @@ import { createUser, googleLogin } from '../../redux/feature/user/userSlice';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useRegisterMutation } from '../../redux/api/apiSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -33,10 +34,11 @@ export function RegisterForm() {
   const { isError,error } = useAppSelector((state) => state.user);
 
    const [postUser,ss] = useRegisterMutation();
+   console.log(ss)
 const [disabled,setDisabled]=useState(true);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const dispatch = useAppDispatch();
-
+ const navigate = useNavigate();
   const onSubmit = (data: SignupFormInputs) => {
     console.log(data);
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -44,10 +46,14 @@ const [disabled,setDisabled]=useState(true);
     
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     dispatch(createUser({ email: data.email, password: data.password }));
+  
   };
   const password = useWatch({ control, name: "password" });
   const confirmPassword = useWatch({control, name: "confirmPassword" });
   
+  const handleSign =()=>{
+navigate('/');
+  }
   useEffect(()=>{
     if(password !== undefined && password !== "" && confirmPassword !== undefined && confirmPassword !== "" && password ===confirmPassword
       ){
@@ -103,7 +109,7 @@ const [disabled,setDisabled]=useState(true);
               {...register('confirmPassword', { required: 'confirmPassword is required' })}
             />
           </div>
-          <Button type='submit' disabled={disabled}>Create Account</Button>
+          <Button type='submit' disabled={disabled} onClick={handleSign}>Create Account</Button>
         </div>
       </form>
       <div className="relative">

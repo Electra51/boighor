@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 import { Button, Input } from '@material-tailwind/react';
 import { googleLogin, loginUser } from '../../redux/feature/user/userSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 
 

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Slider from "react-slick";
 import { Avatar } from "@material-tailwind/react";
 import './popular.css'

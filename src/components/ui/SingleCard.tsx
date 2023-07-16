@@ -12,7 +12,6 @@ import { HeartIcon } from '@heroicons/react/24/solid';
 import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
 import { IBook } from '../../types/globalTypes';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
 import { addToWishList } from '../../redux/feature/wishList/wishlistSlice';
 import { usePostWishListMutation } from '../../redux/api/apiSlice';
@@ -24,13 +23,15 @@ interface IProps {
 
 export default function SingleCard({ card }: IProps) {
 
-  const notify=()=>{
-    toast.error('Please Login to continue')
-  }
+  // const notify=()=>{
+  //   toast.error('Please Login to continue')
+  // }
   const dispatch = useAppDispatch();
-  const [showIcon, setShowIcon] = useState();
+  
   const [postWishList, ss] = usePostWishListMutation();
+  console.log(ss)
 const { user } = useAppSelector((state) => state.user);
+console.log(user)
   const handleAddBook = (card: IBook) => {
     dispatch(addToWishList(card));
     // eslint-disable-next-line @typescript-eslint/no-floating-promises

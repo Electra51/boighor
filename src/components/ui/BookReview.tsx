@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { ChangeEvent, FormEvent, useState } from 'react';
+import {useState } from 'react';
 import { Avatar, Button, Textarea } from "@material-tailwind/react";
 import { FiSend } from 'react-icons/fi';
 import { useGetBookDetailQuery, usePostCommentMutation } from '../../redux/api/apiSlice';

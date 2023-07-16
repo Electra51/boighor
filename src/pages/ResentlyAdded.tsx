@@ -8,6 +8,8 @@ import SingleCard from '../components/ui/SingleCard';
 export default function ResentlyAdded() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { data, isLoading, error } = useGetRecentBooksQuery(undefined);
+    console.log(isLoading)
+   console.log(error)
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const productsData = data?.data;
   return (

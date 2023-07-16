@@ -34,6 +34,8 @@ export default function Wishlist({}) {
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   const productsData = data?.data;
+  console.log(productsData)
+   
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
 

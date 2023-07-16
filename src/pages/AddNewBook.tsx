@@ -2,7 +2,7 @@ import { Card, Input, Button } from '@material-tailwind/react';
 import { useState } from 'react';
 import { useAppDispatch } from '../redux/hook';
 import { addbooks } from '../redux/feature/addBook/addBookSlice';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { usePostAddBookMutation } from '../redux/api/apiSlice';
 import { useNavigate } from 'react-router-dom';
 export default function AddNewBook() {
@@ -14,6 +14,7 @@ export default function AddNewBook() {
   const [description, setDescription] = useState('');
   const [publication_date, setPublicationDate] = useState('');
   const [postNewBook, ss] = usePostAddBookMutation();
+  console.log(ss)
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const submit = (e: any) => {

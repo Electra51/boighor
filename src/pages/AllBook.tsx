@@ -18,6 +18,8 @@ export default function AllBook({}) {
    const [query, setQuery] = useState('');
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
   const { data, isLoading, error } = useGetBooksQuery(undefined);
+  console.log(isLoading)
+   console.log(error)
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access

@@ -26,6 +26,8 @@ export default function BookDetail() {
   const { id } = useParams();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
   const { data, isLoading, error } = useGetBookDetailQuery(id);
+  console.log(isLoading)
+   console.log(error)
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   console.log('kk', data);
 
@@ -33,6 +35,7 @@ export default function BookDetail() {
   const navigate = useNavigate();
   const handleOpen = () => setOpen(!open);
   const [deleteBook, ss] = useDeleteBookMutation();
+  console.log(ss)
  const { user } = useAppSelector((state) => state.user);
   const handleRemoveBook = (data: IBook) => {
     const options = {

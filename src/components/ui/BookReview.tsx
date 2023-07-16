@@ -16,9 +16,8 @@ export default function BookReview({id}:IProps) {
     
   const [inputValue, setInputValue] = useState<string>('');
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const {data}=useGetBookDetailQuery(id,{refetchOnMountOrArgChange:true,
-pollingInterval:1000})
-  console.log(data)
+  const {data}=useGetBookDetailQuery(id)
+ 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [postComment,{isError,isLoading,isSuccess}]=usePostCommentMutation();
   console.log(isLoading)

@@ -25,6 +25,16 @@ export const api = createApi({
       }),
     }),
 
+    deleteBook: builder.mutation({
+      query: ({ id, data }) => ({
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        url: `/book/${id}`,
+        method: 'Delete',
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        body: data,
+      }),
+    }),
+
     postComment: builder.mutation({
       query: ({ id, data }) => ({
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
@@ -60,4 +70,5 @@ export const {
   useGetBookReviewQuery,
   useRegisterMutation,
   usePostAddBookMutation,
+  useDeleteBookMutation,
 } = api;

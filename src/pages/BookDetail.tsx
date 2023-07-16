@@ -6,7 +6,7 @@ import {
   DialogHeader,
   Typography
 } from "@material-tailwind/react";
-import { useGetBookDetailQuery } from "../redux/api/apiSlice";
+import { useDeleteBookMutation, useGetBookDetailQuery } from "../redux/api/apiSlice";
 import { useParams } from "react-router-dom";
 import {
   
@@ -21,6 +21,7 @@ import {
 
 import BookReview from "../components/ui/BookReview";
 import { Fragment, useState } from "react";
+import { IBook } from "../types/globalTypes";
 export default function BookDetail() {
   const {id}=useParams();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
@@ -31,6 +32,17 @@ export default function BookDetail() {
   const [open, setOpen] = useState(false);
  
   const handleOpen = () => setOpen(!open);
+const [deleteBook,ss]=useDeleteBookMutation();
+
+const handleRemoveBook =(data:IBook)=>{
+    const options ={
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        id:id,
+        data:data,
+        
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    };deleteBook(options)
+  }
 
   return (
   
@@ -93,7 +105,8 @@ export default function BookDetail() {
           </Button>
           
           <Button variant="gradient" color="green"   
-          // onClick={()=>handleRemoveBook(value)}
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-argument
+          onClick={()=>handleRemoveBook(data)}
           >
             <span>Confirm</span>
           </Button>

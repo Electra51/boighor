@@ -18,11 +18,15 @@ export const api = createApi({
     postAddBook: builder.mutation({
       query: (data) => ({
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        url: '/books',
+        url: '/addbooks',
         method: 'POST',
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         body: data,
       }),
+    }),
+
+    getRecentBooks: builder.query({
+      query: () => '/getbooks',
     }),
 
     postWishList: builder.mutation({
@@ -87,4 +91,5 @@ export const {
   useDeleteBookMutation,
   usePostWishListMutation,
   useGetWishlistQuery,
+  useGetRecentBooksQuery,
 } = api;

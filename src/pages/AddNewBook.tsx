@@ -4,6 +4,7 @@ import { useAppDispatch } from '../redux/hook';
 import { addbooks } from '../redux/feature/addBook/addBookSlice';
 import toast, { Toaster } from 'react-hot-toast';
 import { usePostAddBookMutation } from '../redux/api/apiSlice';
+import { useNavigate } from 'react-router-dom';
 export default function AddNewBook() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -14,14 +15,16 @@ export default function AddNewBook() {
   const [publication_date, setPublicationDate] = useState('');
   const [postNewBook, ss] = usePostAddBookMutation();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const submit = (e: any) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     e.preventDefault();
-    const book = { title, author, image, genre, publication_date };
+    const book = { title, author, image, genre, publication_date, price, description };
     dispatch(addbooks(book));
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     postNewBook(book);
     toast.success('SuccessFully Added');
+     navigate('/');
     console.log(book);
   };
 

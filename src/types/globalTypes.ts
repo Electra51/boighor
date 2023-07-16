@@ -6,7 +6,7 @@ export interface IBook {
   genre: string;
   author: string;
   // features: string[];
-  // status: boolean;
+  status: boolean;
   // rating: number;
   // quantity?: number;
 }

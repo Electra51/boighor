@@ -17,6 +17,9 @@ const addBookSlice = createSlice({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       state.addBook.push(action.payload);
     },
+    // updateBook:(state,action)=>{
+    //   const {}
+    // }
   },
 });
 

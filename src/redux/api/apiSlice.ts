@@ -25,6 +25,20 @@ export const api = createApi({
       }),
     }),
 
+    postWishList: builder.mutation({
+      query: (data) => ({
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        url: '/addwishlist',
+        method: 'POST',
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        body: data,
+      }),
+    }),
+
+    getWishlist: builder.query({
+      query: () => '/wishlists',
+    }),
+
     deleteBook: builder.mutation({
       query: ({ id, data }) => ({
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
@@ -71,4 +85,6 @@ export const {
   useRegisterMutation,
   usePostAddBookMutation,
   useDeleteBookMutation,
+  usePostWishListMutation,
+  useGetWishlistQuery,
 } = api;

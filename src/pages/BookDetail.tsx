@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import {
   Dialog,
@@ -20,6 +21,7 @@ import { Fragment, useState } from 'react';
 import { IBook } from '../types/globalTypes';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../redux/hook';
 export default function BookDetail() {
   const { id } = useParams();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unused-vars
@@ -31,7 +33,7 @@ export default function BookDetail() {
   const navigate = useNavigate();
   const handleOpen = () => setOpen(!open);
   const [deleteBook, ss] = useDeleteBookMutation();
-
+ const { user } = useAppSelector((state) => state.user);
   const handleRemoveBook = (data: IBook) => {
     const options = {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -40,6 +42,7 @@ export default function BookDetail() {
 
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
     };
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     deleteBook(options);
     toast.success('Successfully Deleted');
     navigate('/allbook');
@@ -65,6 +68,14 @@ export default function BookDetail() {
         <Typography variant="h4" color="blue-gray" className="mb-2">
           {data?.title}
         </Typography>
+          <IconButton
+          size="sm"
+          color="gray"
+          variant="text"
+          className="rounded-full"
+        >
+          <HeartIcon className="h-6 w-6" />
+        </IconButton>
         <Typography color="gray" className="font-normal mb-8">
           Author: {data?.author}
         </Typography>
@@ -74,18 +85,22 @@ export default function BookDetail() {
         <Typography color="gray" className="font-normal mb-8">
           Genre: {data?.genre}
         </Typography>
-        <IconButton
-          size="sm"
-          color="gray"
-          variant="text"
-          className="rounded-full"
-        >
-          <HeartIcon className="h-6 w-6" />
-        </IconButton>
-        <Link to="/editbook" state={{ data }}>
+         <Typography color="gray" className="font-normal mb-8">
+          Description: {data?.description}
+        </Typography>
+         <Button className="mr-3">Read</Button>
+
+        {user?.email && (
+              <Link to="/editbook" state={{ data }}>
           <Button className="mr-3">Edit</Button>
         </Link>
-        <Fragment>
+            )}
+        {/* <Link to="/editbook" state={{ data }}>
+          <Button className="mr-3">Edit</Button>
+        </Link> */}
+         {user?.email && (
+              
+         <Fragment>
           <Button onClick={handleOpen}>Delete</Button>
           <Dialog open={open} handler={handleOpen}>
             <DialogHeader>
@@ -116,6 +131,9 @@ export default function BookDetail() {
             </DialogFooter>
           </Dialog>
         </Fragment>
+       
+            )}
+        
       </div>
       <BookReview id={id!} />
     </div>

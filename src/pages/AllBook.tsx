@@ -9,9 +9,10 @@ import { Input } from '@material-tailwind/react';
 import { BsSearch } from 'react-icons/bs';
 import { Select, Option } from '@material-tailwind/react';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from '../redux/hook';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-empty-pattern
 export default function AllBook({}) {
-  
+
   const [allItem, setAllItem] = useState([]);
   const [filterData, seFilterData] = useState([]);
    const [query, setQuery] = useState('');
@@ -30,7 +31,7 @@ export default function AllBook({}) {
   const handleNavigate = () => {
     navigate('/addnewbook');
   };
-
+const { user } = useAppSelector((state) => state.user);
   // console.log('productsData: ', productsData);
 
   useEffect(() => {
@@ -77,14 +78,17 @@ const searchdata= allItem.filter( (item:any) => item.author.toLowerCase().includ
 
 
   return (
-    <div>
-      <div className="flex justify-between">
-        <Button onClick={handleNavigate}>Add Book</Button>
+    <div className='mt-6'>
+      <div className="flex justify-between mb-8">
+          {user?.email && (
+              <Button onClick={handleNavigate}>Add Book</Button>
+            )}
+        
         <div className="w-72">
           <Input
             // onChange={(e) => setSearchItem(e.target.value.toLowerCase())}
             // onChange={(e) => setSearch(e.target.value)}
-            label="Search with title, author and genre"
+            label="Search by title, author and genre"
            defaultValue={query}
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
            onChange={(e:any)=>handleSearch(e)}
@@ -92,7 +96,7 @@ const searchdata= allItem.filter( (item:any) => item.author.toLowerCase().includ
           />
         </div>
         <div className="w-72">
-          <Select label="Select Version">
+          <Select label="Filter by genre and year">
             <Option>Material Tailwind HTML</Option>
             <Option>Material Tailwind React</Option>
             <Option>Material Tailwind Vue</Option>

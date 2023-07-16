@@ -5,6 +5,8 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { Avatar, Button, Textarea } from "@material-tailwind/react";
 import { FiSend } from 'react-icons/fi';
 import { useGetBookDetailQuery, usePostCommentMutation } from '../../redux/api/apiSlice';
+import { useAppSelector } from '../../redux/hook';
+import { toast } from 'react-hot-toast';
 
 
 
@@ -13,7 +15,7 @@ interface IProps {
 }
 
 export default function BookReview({id}:IProps) {
-    
+    const { user } = useAppSelector((state) => state.user);
   const [inputValue, setInputValue] = useState<string>('');
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const {data}=useGetBookDetailQuery(id)
@@ -44,10 +46,13 @@ export default function BookReview({id}:IProps) {
     setInputValue(event.target.value);
     
   };
+  const notify=()=>{
+    toast.error('Please Login to continue')
+  }
 
   return (
     <div className="max-w-7xl mx-auto mt-5">
-      <form className="flex gap-5 items-center" onSubmit={handleSubmit}>
+       {user?.email ?<form className="flex gap-5 items-center" onSubmit={handleSubmit}>
         <Textarea
           className="w-full"
           onChange={handleChange}
@@ -59,7 +64,20 @@ export default function BookReview({id}:IProps) {
         >
           <FiSend />
         </Button>
-      </form>
+      </form>: <form className="flex gap-5 items-center" onClick={notify}>
+        <Textarea
+          className="w-full"
+          onChange={handleChange}
+          value={inputValue}
+        />
+        <Button
+          
+          className="rounded-full h-10 w-10 p-2 text-[25px]"
+        >
+          <FiSend />
+        </Button>
+      </form>}
+      
       <div className="mt-10">
         
         {data?.comments?.map((comment:string, index:number) => (

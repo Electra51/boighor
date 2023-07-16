@@ -5,6 +5,8 @@ import { setLoading, setUser } from "./redux/feature/user/userSlice";
 import { auth } from "./lib/firebase";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
+ import "slick-carousel/slick/slick.css";
+ import "slick-carousel/slick/slick-theme.css";
 
 function App() {
    const dispatch = useAppDispatch();

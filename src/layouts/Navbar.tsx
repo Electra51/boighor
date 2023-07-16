@@ -58,9 +58,19 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/addnewbook">
+        {user?.email && (
+              <Button
+                onClick={handleLogOut}
+                variant="gradient"
+                size="sm"
+                className="hidden lg:inline-block"
+              >
+               <Link to="/addnewbook">
           <p className="flex items-center">Add New Book</p>
         </Link>
+              </Button>
+            )}
+        
       </Typography>
       <Typography
         as="li"
@@ -80,7 +90,7 @@ export default function Example() {
     <>
       <Navbar className="sticky top-0 left-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-600">
-          <img alt="nature" className="h-[3.6rem] " src={navLogo} />
+        <Link to='/'>  <img alt="nature" className="h-[3.6rem] " src={navLogo} /></Link>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             {!user?.email && (
@@ -160,12 +170,42 @@ export default function Example() {
         </div>
         <MobileNav open={openNav}>
           {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>Sign up</span>
-          </Button>
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>Sign in</span>
-          </Button>
+              {!user?.email && (
+              <>
+                <Button
+                  variant="gradient"
+                  size="sm"
+                  className="hidden lg:inline-block"
+                >
+                  <Link to="/signup">
+                    <span>Sign up</span>
+                  </Link>
+                </Button>
+                <Button
+                  variant="gradient"
+                  size="sm"
+                  className="hidden lg:inline-block"
+                >
+                  <Link to="/login">
+                    {' '}
+                    <span>Sign in</span>
+                  </Link>
+                </Button>
+              </>
+            )}
+            {user?.email && (
+              <Button
+                onClick={handleLogOut}
+                variant="gradient"
+                size="sm"
+                className="hidden lg:inline-block"
+              >
+                <Link to="/login">
+                  {' '}
+                  <span>LogOut</span>
+                </Link>
+              </Button>
+            )}
         </MobileNav>
       </Navbar>
     </>

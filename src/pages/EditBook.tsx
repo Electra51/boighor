@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Card, Input, Button } from '@material-tailwind/react';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -13,6 +15,7 @@ export default function EditBook() {
       image,
       genre,
       price,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       description,
       publication_date,
     };
@@ -21,6 +24,7 @@ export default function EditBook() {
   };
 
   const location = useLocation();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   console.log('location', location.state?.data?.publicationDate);
 
   const [title, setTitle] = useState(location.state?.data?.title);

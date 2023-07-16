@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -115,15 +116,20 @@ const [disabled,setDisabled]=useState(true);
           </span>
         </div>
       </div>
-      <Button
-        
-        type="button"
-        className="flex items-center justify-between"
-        onClick={handleGoogleLogin}
+     
+     <div style={{display:'flex',justifyContent:'center'}}>
+       <Button
+        size="lg"
+        type='submit'
+        variant="outlined"
+        color="blue-gray"
+        className="flex items-center gap-3"
+             onClick={handleGoogleLogin}
       >
-        <p>SignUp With Google</p>
-        <FcGoogle />
+       <FcGoogle />
+        Continue with Google
       </Button>
+     </div>
     </div>
   );
 }

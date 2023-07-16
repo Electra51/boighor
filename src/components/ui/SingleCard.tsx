@@ -13,34 +13,39 @@ import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
 import { IBook } from '../../types/globalTypes';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useAppDispatch } from '../../redux/hook';
+import { useAppDispatch, useAppSelector } from '../../redux/hook';
 import { addToWishList } from '../../redux/feature/wishList/wishlistSlice';
 import { usePostWishListMutation } from '../../redux/api/apiSlice';
-import { toast } from 'react-hot-toast';
+import {  toast } from 'react-hot-toast';
 
 interface IProps {
   card: IBook;
 }
 
 export default function SingleCard({ card }: IProps) {
+
+  const notify=()=>{
+    toast.error('Please Login to continue')
+  }
   const dispatch = useAppDispatch();
   const [showIcon, setShowIcon] = useState();
   const [postWishList, ss] = usePostWishListMutation();
-
+const { user } = useAppSelector((state) => state.user);
   const handleAddBook = (card: IBook) => {
     dispatch(addToWishList(card));
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     postWishList(card);
     toast.success('SuccessFully Added');
     // console.log(book);
   };
   return (
     <Card className="w-full max-w-[26rem] shadow-lg">
-      <Link to={`/bookdetail/${card?._id}`}>
+     
         <CardHeader floated={false} color="blue-gray">
           <img src={card?.image} alt="ui/ux review check" />
           <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
         </CardHeader>
-      </Link>
+   
       <CardBody>
         <div className="mb-3 flex items-center justify-between">
           <Typography variant="h5" color="blue-gray" className="font-medium">
@@ -73,13 +78,22 @@ export default function SingleCard({ card }: IProps) {
             Genre: {card?.genre}
           </Typography>
         </div>
+         <Typography
+            color="blue-gray"
+            className="flex items-center gap-1.5 font-normal"
+          >
+            Publication Date: {card?.publication_date}
+          </Typography>
       </CardBody>
       <CardFooter className="pt-3">
-        <a href="#" className="inline-block">
-          <Button size="sm" variant="text" className="flex items-center gap-2">
-            Learn More
+        <a className="inline-block">
+          <Link to={`/bookdetail/${card?._id}`}><Button size="sm" variant="text" className="flex items-center gap-2">
+           View Details
             <ArrowLongRightIcon strokeWidth={2} className="w-4 h-4" />
-          </Button>
+          </Button></Link>
+
+          
+          
         </a>
       </CardFooter>
     </Card>

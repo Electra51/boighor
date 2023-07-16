@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -5,7 +6,7 @@
 
 
 import { useForm } from 'react-hook-form';
-
+import { FcGoogle } from 'react-icons/fc';
 
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -107,16 +108,18 @@ export function LoginForm() {
       </div>
       
 
-      <Button
+    <div style={{display:'flex',justifyContent:'center'}}>
+       <Button
         size="lg"
         variant="outlined"
         color="blue-gray"
         className="flex items-center gap-3"
-         onClick={handleGoogleLogin}
+             onClick={handleGoogleLogin}
       >
-        <img src="/icons/google.svg" alt="metamask" className="h-6 w-6" />
+       <FcGoogle />
         Continue with Google
       </Button>
+     </div>
     </div>
   );
 }
